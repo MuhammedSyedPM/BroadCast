@@ -14,9 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<Button?>(R.id.btnClick).setOnClickListener {
-
-
+        findViewById<Button?>(R.id.createBroadcast).setOnClickListener {
+            createCustomBroadcast()
         }
         findViewById<Button?>(R.id.btnRegister).setOnClickListener {
             registerReceiver()
@@ -24,12 +23,30 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button?>(R.id.btnUnRegister).setOnClickListener {
             unregisterMyReceiver()
         }
-
+        findViewById<Button?>(R.id.btnRegisterForCustom).setOnClickListener {
+           registerForCustomBroadcast()
+        }
     }
+
+    private fun createCustomBroadcast(){
+        Intent().also {
+            it.action = MY_CUSTOM_EVENT
+            it.putExtra("data", "I am syed")
+            sendBroadcast(it)
+        }
+    }
+
+    private val myCustomReceiver = MyCustomReceiver()
+    private fun registerForCustomBroadcast(){
+        val filter = IntentFilter(MY_CUSTOM_EVENT)
+        //val flag = ContextCompat.RECEIVER_EXPORTED
+        val flag = ContextCompat.RECEIVER_NOT_EXPORTED
+        ContextCompat.registerReceiver(this, myCustomReceiver, filter, flag)
+    }
+
 
     private val myReceiver = MyReceiver()
     private fun registerReceiver(){
-
         val filter = IntentFilter("android.intent.action.AIRPLANE_MODE")
         //val flag = ContextCompat.RECEIVER_EXPORTED
         val flag = ContextCompat.RECEIVER_NOT_EXPORTED
@@ -38,9 +55,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun unregisterMyReceiver(){
         unregisterReceiver(myReceiver)
+        unregisterReceiver(myCustomReceiver)
     }
 
     companion object{
         const val TAG = "MYBroadcastLog"
+        const val MY_CUSTOM_EVENT = "com.technowave.broadcastexample.MY_CUSTOM_BROADCAST"
     }
 }

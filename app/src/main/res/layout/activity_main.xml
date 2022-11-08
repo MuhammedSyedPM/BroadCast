@@ -7,10 +7,10 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnClick"
+        android:id="@+id/createBroadcast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BroadCast Intent"
+        android:text="Create BroadCast"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.548"
@@ -25,7 +25,7 @@
         android:text="Register Receiver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClick" />
+        app:layout_constraintTop_toBottomOf="@+id/createBroadcast" />
 
     <Button
         android:id="@+id/btnUnRegister"
@@ -36,4 +36,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
+    <Button
+        android:id="@+id/btnRegisterForCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Custom Broadcast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUnRegister" />
 </androidx.constraintlayout.widget.ConstraintLayout>
